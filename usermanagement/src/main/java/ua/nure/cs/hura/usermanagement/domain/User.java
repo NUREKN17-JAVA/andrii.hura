@@ -44,6 +44,13 @@ public class User implements Serializable {
 		return getLastName() + ", " + getFirstName();
 	}
 	
+	public int getMonth()
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(this.dateOfBirth);
+		return calendar.get(Calendar.MONTH);
+	}
+	
 	public int getAge() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
