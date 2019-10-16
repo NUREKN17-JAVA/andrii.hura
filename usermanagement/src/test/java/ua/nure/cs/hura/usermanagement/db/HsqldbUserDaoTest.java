@@ -4,6 +4,7 @@ package ua.nure.cs.hura.usermanagement.db;
 import java.util.Date;
 
 import org.dbunit.DatabaseTestCase;
+import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 
@@ -11,20 +12,21 @@ import ua.nure.cs.hura.usermanagement.domain.User;
 
 public class HsqldbUserDaoTest extends DatabaseTestCase {
 	
-	private static final int FIRST_NAME = 19;
-	private static final int LAST_NAME = 19;
+	private static final String FIRST_NAME = "John";
+	private static final String LAST_NAME = "Doe";
 	private HsqldbUserDao dao;
+	private ConnectionFactory connectionFactory;
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		dao = new HsqldbUserDao();
+		dao = new HsqldbUserDao(connectionFactory);
 		
 	}
 	
 	public void testCreate() throws DatabaseException {
 		User user = new User();
-		user.setFirstName("John");
-		user.setLastName("Doe");
+		user.setFirstName(FIRST_NAME);
+		user.setLastName(LAST_NAME);
 		user.setDateOfBirth(new Date());
 		User userToCheck = dao.create(user);
 		assertNotNull(userToCheck);
@@ -39,8 +41,8 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 
 	@Override
 	protected IDatabaseConnection getConnection() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		connectionFactory = new ConnectionFactoryImpl();
+		return new DatabaseConnection(connectionFactory.createConnection());
 	}
 
 	@Override
