@@ -38,7 +38,7 @@ public class UserTest extends TestCase {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH, DAY_OF_BIRTH);
 		user.setDateOfBirth(calendar.getTime());
-		if(user.getAge() > ETALONE_OF_AGE2)
+		if(user.getAge() >= ETALONE_OF_AGE2)
 		{
 			boolValue = true;
 		}
@@ -50,7 +50,7 @@ public class UserTest extends TestCase {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH, DAY_OF_BIRTH);
 		user.setDateOfBirth(calendar.getTime());
-		if(user.getAge() > ETALONE_OF_AGE3)
+		if(user.getAge() >= ETALONE_OF_AGE3)
 		{
 			boolValue = true;
 		}
@@ -65,7 +65,7 @@ public class UserTest extends TestCase {
         assertEquals(calendar.getTime(), user.getDateOfBirth());
 	}
 	
-	public void testMonthIsApril() {
+	public void testMonthIsApril() {//Check if the month is april
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(YEAR_OF_BIRTH, MONTH_OF_BIRTH, DAY_OF_BIRTH);
 		user.setDateOfBirth(calendar.getTime());
