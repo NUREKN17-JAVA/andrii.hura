@@ -22,7 +22,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		dao = new HsqldbUserDao(connectionFactory);
-		//Test git
+		//Test git not working
 	}
 	
 	public void testCreate() throws DatabaseException {
