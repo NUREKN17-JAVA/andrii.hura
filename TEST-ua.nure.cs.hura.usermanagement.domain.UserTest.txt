@@ -1,0 +1,17 @@
+Testsuite: ua.nure.cs.hura.usermanagement.domain.UserTest
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.01 sec
+
+Testcase: testOlderThan18 took 0.003 sec
+Testcase: testOlderThan21 took 0.002 sec
+	FAILED
+We can't sell you strong alcohol sir
+junit.framework.AssertionFailedError: We can't sell you strong alcohol sir
+	at ua.nure.cs.hura.usermanagement.domain.UserTest.testOlderThan21(Unknown Source)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:36)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:460)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:142)
+
+Testcase: testGetFullName took 0 sec
+Testcase: testGetAge1 took 0 sec
+Testcase: testTodayBirthday took 0.001 sec
+Testcase: testMonthIsApril took 0 sec

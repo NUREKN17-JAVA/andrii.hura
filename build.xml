@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     2 окт. 2019 г. 16:34:10                                                        
+
+     project    
+     description
+                   
+     AndriiHura                                                                
+     ====================================================================== -->
+<project name="usermanagement" default="test" basedir=".">
+  
+  <property name="build-dir" value="${basedir}/bin" />
+  <property name="test-java-dir" value="${basedir}/src/test/java"/>
+  <property name="main-java-dir" value="${basedir}/src/main/java"/>
+  
+    <!-- ================================= 
+          target: test              
+         ================================= -->
+    <target name="test" depends="test-compile" description="description">
+        <junit>
+          <classpath>
+            <pathelement location="${build-dir}"/>
+          </classpath>
+        	<classpath>
+        	          <path id="org.junit" location="C:\Users\AndriiHura\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar"/>
+        	        </classpath>
+          <formatter type="plain"/>
+          <test name="ua.nure.cs.hura.usermanagement.domain.UserTest"/>
+        </junit>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: test-compile                      
+         - - - - - - - - - - - - - - - - - -->
+  <target name="compile" depends="init">
+    <javac srcdir="${main-java-dir}" destdir="${build-dir}" includeantruntime="false"/>
+  </target>
+  
+    <target name="test-compile" depends="compile">
+      <javac srcdir="${test-java-dir}" destdir="${build-dir}" includeantruntime="false">
+        <classpath>
+          <path id="org.junit" location="C:\Users\AndriiHura\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar"/>
+        </classpath>
+      </javac>
+    </target>
+  
+  <target name="init" depends="clean">
+    <mkdir dir="${build-dir}"/>
+  </target>
+  
+  <target name = "clean">
+    <delete dir="${build-dir}" failonerror="no"/>
+  </target>
+</project>
