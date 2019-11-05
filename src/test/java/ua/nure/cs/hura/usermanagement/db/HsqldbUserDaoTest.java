@@ -1,6 +1,5 @@
 package ua.nure.cs.hura.usermanagement.db;
 
-
 import java.util.Collection;
 import java.util.Date;
 
@@ -22,7 +21,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		dao = new HsqldbUserDao(connectionFactory);
-		//Test git not working
+		
 	}
 	
 	public void testCreate() throws DatabaseException {
@@ -30,11 +29,13 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 		user.setFirstName(FIRST_NAME);
 		user.setLastName(LAST_NAME);
 		user.setDateOfBirth(new Date());
+		assertNull(user.getId());
 		User userToCheck = dao.create(user);
 		assertNotNull(userToCheck);
 		assertNotNull(userToCheck.getId());
 		assertEquals(user.getFirstName(), userToCheck.getFirstName());
 		assertEquals(user.getLastName(), userToCheck.getLastName());
+		assertEquals(user.getDateOfBirth(),userToCheck.getDateOfBirth());
 	}
 	
 	
@@ -54,8 +55,10 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 	@Override
 	protected IDatabaseConnection getConnection() throws Exception {
 		connectionFactory = new ConnectionFactoryImpl
-				("org.hsqldb.jdbcDriver", "jdbc:hsqldb:file:db/usermanagement",
-				"jdbc:hsqldb:file:db/usermanagement", "");
+				("org.hsqldb.jdbcDriver", 
+				"jdbc:hsqldb:file:db/usermanagement",
+				"sa",
+				"");
 		return new DatabaseConnection(connectionFactory.createConnection());
 	}
 

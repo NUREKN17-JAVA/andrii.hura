@@ -1,12 +1,12 @@
 package ua.nure.cs.hura.usermanagement.db;
 
-import java.sql.Statement;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -19,23 +19,23 @@ public class HsqldbUserDao implements Dao<User> {
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES(?, ? ,?);";
 	ConnectionFactory connectionFactory;
 	
-	public void setConnectionFactory(ConnectionFactory connectionFactory) {
-	    this.connectionFactory = connectionFactory;
-	  }
-	
 	public ConnectionFactory getConnectionFactory() {
 	    return connectionFactory;
 	  }
 	
-	public HsqldbUserDao(ConnectionFactory connectionFactory2) {
-		this.connectionFactory = connectionFactory2;
+	public void setConnectionFactory(ConnectionFactory connectionFactory) {
+	    this.connectionFactory = connectionFactory;
+	  }
+	
+	public HsqldbUserDao(ConnectionFactory connectionFactory) {
+		this.connectionFactory = connectionFactory;
 	}
 
 	@Override
 	public User create(User entity) throws DatabaseException {
-		
+		Connection connection = connectionFactory.createConnection();
 		try {
-			Connection connection = connectionFactory.createConnection();
+			
 			PreparedStatement preparedStatement = 
 					connection.prepareStatement(INSERT_QUERY);
 			preparedStatement.setString(1, entity.getFirstName());
@@ -43,7 +43,7 @@ public class HsqldbUserDao implements Dao<User> {
 			preparedStatement.setDate(3, new Date(entity.getDateOfBirth().getTime()));
 			int numberOfRows = preparedStatement.executeUpdate();
 			if(numberOfRows != 1) {
-				throw new DatabaseException("Number of inserted rows is wrong");
+				throw new DatabaseException("Number of inserted rows is wrong: " +numberOfRows);
 			}
 			CallableStatement callableStatement = 
 					connection.prepareCall(CALL_IDENTITY);
@@ -85,9 +85,9 @@ public class HsqldbUserDao implements Dao<User> {
 		Collection<User> result = new LinkedList<User>();
 		
 		Connection connection = connectionFactory.createConnection();
-		
+		Statement statement;
 		try {
-			Statement statement;
+			
 			statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(SELECT_QUERY);
 			
@@ -100,11 +100,9 @@ public class HsqldbUserDao implements Dao<User> {
 				result.add(user);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new DatabaseException(e);
 		}
 		
-		// TODO Auto-generated method stub
 		return result;
 	}
 
