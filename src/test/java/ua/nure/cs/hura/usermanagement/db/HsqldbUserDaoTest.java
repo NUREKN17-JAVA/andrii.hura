@@ -24,9 +24,10 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 		dao = new HsqldbUserDao(connectionFactory);
 		
 	}
+	
 	public void testFind() throws DatabaseException{
-		long testId = TEST_ID;
-		User user = dao.find(testId);
+		
+		User user = dao.find(TEST_ID);
 		assertNotNull("User does not exist", user);
 		assertEquals("FristName is not equal","TestFind",user.getFirstName());
 		assertEquals("Last Name is not equal","User",user.getLastName());
@@ -46,6 +47,19 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 		assertEquals(user.getFirstName(), userToCheck.getFirstName());
 		assertEquals(user.getLastName(), userToCheck.getLastName());
 		assertEquals(user.getDateOfBirth(),userToCheck.getDateOfBirth());
+	}
+	
+	public void testDelete() throws DatabaseException{
+		User user = new User();
+		user.setFirstName("Name");
+		user.setLastName("Surname");
+		user.setDateOfBirth(new Date());
+		User userToCheck = dao.create(user);
+		assertNotNull("User does not exist", userToCheck);
+		long testId = userToCheck.getId();
+		dao.delete(userToCheck);
+		assertNull(dao.find(testId));
+		
 	}
 	
 	

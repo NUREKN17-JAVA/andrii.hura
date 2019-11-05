@@ -14,6 +14,7 @@ import ua.nure.cs.hura.usermanagement.domain.User;
 
 public class HsqldbUserDao implements Dao<User> {
 	
+	private static final String DELETE_QUERY = "DELETE FROM users WHERE id = ?";
 	private static final String FIND_QUERY = "SELECT * FROM users WHERE id = ?";
 	private static final String SELECT_QUERY = "SELECT * FROM users";
 	private static final String CALL_IDENTITY = "call IDENTITY()";
@@ -71,7 +72,22 @@ public class HsqldbUserDao implements Dao<User> {
 
 	@Override
 	public void delete(User entity) throws DatabaseException {
-		// TODO Auto-generated method stub
+		Connection connection = connectionFactory.createConnection();
+		try {
+			PreparedStatement statement = connection.prepareStatement(DELETE_QUERY);
+			statement.setLong(1, entity.getId());
+			int removedRows = statement.executeUpdate();
+
+            if (removedRows != 1) {
+                throw new DatabaseException("Number of removed rows: " + removedRows);
+            }
+			
+			statement.close();
+			connection.close();
+		}
+		catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
 		
 	}
 
