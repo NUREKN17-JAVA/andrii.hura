@@ -13,6 +13,11 @@ import ua.nure.cs.hura.usermanagement.domain.User;
 
 public class HsqldbUserDaoTest extends DatabaseTestCase {
 	
+	private static final String UPDATE_NAME = "NewName";
+	private static final String UPDATE_LNAME = "NewLName";
+	private static final Date UPDATE_DATE = new Date(2000-11-02);
+	private static final String DELETE_TEST_LASTNAME = "Surname";
+	private static final String DELETE_TEST_NAME = "Name";
 	private static final long TEST_ID = 3L;
 	private static final String FIRST_NAME = "John";
 	private static final String LAST_NAME = "Doe";
@@ -49,10 +54,37 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 		assertEquals(user.getDateOfBirth(),userToCheck.getDateOfBirth());
 	}
 	
+	
+	public void testUpdate() throws DatabaseException{
+		User user = new User();
+		user.setFirstName(DELETE_TEST_NAME);
+		user.setLastName(DELETE_TEST_LASTNAME);
+		user.setDateOfBirth(new Date());
+		
+		User userToCheck = dao.create(user);
+		assertEquals(DELETE_TEST_NAME, userToCheck.getFirstName());
+		assertEquals(DELETE_TEST_LASTNAME, userToCheck.getLastName());
+		assertEquals(user.getDateOfBirth(),userToCheck.getDateOfBirth());
+		
+		userToCheck.setFirstName(UPDATE_NAME);
+		userToCheck.setLastName(UPDATE_LNAME);
+		userToCheck.setDateOfBirth(UPDATE_DATE);
+		
+		dao.update(userToCheck);
+		
+		assertEquals(UPDATE_NAME, userToCheck.getFirstName());
+		assertEquals(UPDATE_LNAME, userToCheck.getLastName());
+		assertEquals(UPDATE_DATE,userToCheck.getDateOfBirth());
+		
+		
+		
+	}
+	
+	
 	public void testDelete() throws DatabaseException{
 		User user = new User();
-		user.setFirstName("Name");
-		user.setLastName("Surname");
+		user.setFirstName(DELETE_TEST_NAME);
+		user.setLastName(DELETE_TEST_LASTNAME);
 		user.setDateOfBirth(new Date());
 		User userToCheck = dao.create(user);
 		assertNotNull("User does not exist", userToCheck);

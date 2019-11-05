@@ -14,6 +14,7 @@ import ua.nure.cs.hura.usermanagement.domain.User;
 
 public class HsqldbUserDao implements Dao<User> {
 	
+	private static final String UPDATE_QUERY = "UPDATE users SET firstname = ?, lastname = ?, dateofbirth = ? WHERE id = ?";
 	private static final String DELETE_QUERY = "DELETE FROM users WHERE id = ?";
 	private static final String FIND_QUERY = "SELECT * FROM users WHERE id = ?";
 	private static final String SELECT_QUERY = "SELECT * FROM users";
@@ -66,7 +67,26 @@ public class HsqldbUserDao implements Dao<User> {
 
 	@Override
 	public void update(User entity) throws DatabaseException {
-		// TODO Auto-generated method stub
+		 try {
+	            Connection connection = connectionFactory.createConnection();
+	            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
+	            preparedStatement.setString(1, entity.getFirstName());
+	            preparedStatement.setString(2, entity.getLastName());
+	            preparedStatement.setDate(3, new Date(entity.getDateOfBirth()
+	                                                        .getTime()));
+	            preparedStatement.setLong(4, entity.getId());
+
+	            int changedRows = preparedStatement.executeUpdate();
+
+	            if (changedRows != 1) {
+	                throw new DatabaseException("Number of inserted rows: " + changedRows);
+	            }
+
+	            connection.close();
+	            preparedStatement.close();
+	        } catch (SQLException e) {
+	            throw new DatabaseException(e);
+	        }
 		
 	}
 
