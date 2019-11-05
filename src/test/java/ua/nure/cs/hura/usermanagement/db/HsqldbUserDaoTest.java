@@ -75,7 +75,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 		assertEquals(UPDATE_NAME, userToCheck.getFirstName());
 		assertEquals(UPDATE_LNAME, userToCheck.getLastName());
 		assertEquals(UPDATE_DATE,userToCheck.getDateOfBirth());
-		
+		//Test New branch
 		
 		
 	}
