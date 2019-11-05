@@ -3,7 +3,13 @@
 		<column>id</column> 
 		<column>firstname</column> 
 		<column>lastname</column> 
-		<column>dateofbirth</column> 
+		<column>dateofbirth</column>
+		 <row> 
+			<value>3</value> 
+			<value>TestFind</value> 
+			<value>User</value> 
+			<value>2019-05-11</value> 
+		</row> 
 		<row> 
 			<value>1000</value> 
 			<value>Bill</value> 

@@ -13,6 +13,7 @@ import ua.nure.cs.hura.usermanagement.domain.User;
 
 public class HsqldbUserDaoTest extends DatabaseTestCase {
 	
+	private static final long TEST_ID = 3L;
 	private static final String FIRST_NAME = "John";
 	private static final String LAST_NAME = "Doe";
 	private HsqldbUserDao dao;
@@ -21,6 +22,15 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		dao = new HsqldbUserDao(connectionFactory);
+		
+	}
+	public void testFind() throws DatabaseException{
+		long testId = TEST_ID;
+		User user = dao.find(testId);
+		assertNotNull("User does not exist", user);
+		assertEquals("FristName is not equal","TestFind",user.getFirstName());
+		assertEquals("Last Name is not equal","User",user.getLastName());
+		//assertEquals("ID is not equal", 3, user.getId());
 		
 	}
 	
@@ -42,7 +52,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 	public void testFindAll() throws DatabaseException  {
 		Collection<User> users = dao.findAll();
 		assertNotNull("Collection is null", users);
-		assertEquals("Collection size does not match", 2, users.size());
+		assertEquals("Collection size does not match", 3, users.size());
 		
 		
 	}
