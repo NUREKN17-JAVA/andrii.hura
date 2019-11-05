@@ -14,6 +14,7 @@ import ua.nure.cs.hura.usermanagement.domain.User;
 
 public class HsqldbUserDao implements Dao<User> {
 	
+	private static final String FIND_QUERY = "SELECT * FROM users WHERE id = ?";
 	private static final String SELECT_QUERY = "SELECT * FROM users";
 	private static final String CALL_IDENTITY = "call IDENTITY()";
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES(?, ? ,?);";
@@ -76,8 +77,26 @@ public class HsqldbUserDao implements Dao<User> {
 
 	@Override
 	public User find(Long id) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
+		Connection connection = connectionFactory.createConnection();
+		User user = new User();
+		try {
+			PreparedStatement statement = connection.prepareStatement(FIND_QUERY);
+			statement.setLong(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			if(resultSet.next()) {
+				user = new User();
+				user.setId(resultSet.getLong(1));
+				user.setFirstName(resultSet.getString(2));
+				user.setLastName(resultSet.getString(3));
+				user.setDateOfBirth(resultSet.getDate(4));
+			}
+			resultSet.close();
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
+		return user;
 	}
 
 	@Override
