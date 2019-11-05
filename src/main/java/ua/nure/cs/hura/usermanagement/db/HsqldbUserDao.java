@@ -86,7 +86,7 @@ public class HsqldbUserDao implements Dao<User> {
 	            preparedStatement.close();
 	        } catch (SQLException e) {
 	            throw new DatabaseException(e);
-	        }
+	        }//Testing merge git 
 		
 	}
 
