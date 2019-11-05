@@ -13,6 +13,11 @@ public class MainFrame extends JFrame {
 	private static final int FRAME_WIDTH = 800;
 	private JPanel contentPanel;
 	private BrowsePanel browsePanel;
+	
+	public MainFrame() {
+		super();
+		initialize();
+	}
 
 	private void initialize() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
