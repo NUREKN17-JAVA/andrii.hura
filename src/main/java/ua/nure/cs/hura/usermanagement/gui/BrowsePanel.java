@@ -13,6 +13,7 @@ import javax.swing.border.Border;
 
 public class BrowsePanel extends JPanel implements ActionListener {
 
+	private static final String ADD_COMMAND = "add";
 	private MainFrame parent;
 	private JScrollPane tablePanel;
 	private JTable userTable;
@@ -56,7 +57,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 			addButton = new JButton();
 			addButton.setText("Add");//has to be localized
 			addButton.setName(ADD_BUTTON_COMPONENT_NAME);
-			addButton.setActionCommand("add");//non-localize
+			addButton.setActionCommand(ADD_COMMAND);//non-localize
 			addButton.addActionListener(this);
 		}
 		return addButton;
@@ -118,7 +119,11 @@ public class BrowsePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String acctionCommand = e.getActionCommand();
+		if(ADD_COMMAND.equalsIgnoreCase(acctionCommand)) {
+			this.setVisible(false);
+			parent.showAddPanel();
+		} ///else if(EDIT_COMMANd)...
 		
 	}
 

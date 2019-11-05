@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
 	private static final int FRAME_WIDTH = 800;
 	private JPanel contentPanel;
 	private BrowsePanel browsePanel;
+	private AddPanel addPanel;
 	
 	public MainFrame() {
 		super();
@@ -24,6 +25,26 @@ public class MainFrame extends JFrame {
 		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		this.setTitle("User Manager");
 		this.setContentPane(getContentPanel());
+	}
+	
+	
+	public void showAddPanel() {
+		showPanel(getAddPanel());
+	}
+	
+
+	private void showPanel(JPanel panel) {
+		getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setVisible(true);
+		panel.repaint();
+		
+	}
+
+	private AddPanel getAddPanel() {
+		if(addPanel == null) {
+			addPanel = new AddPanel();
+		}
+		return addPanel;
 	}
 
 	private JPanel getContentPanel() {
