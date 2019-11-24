@@ -25,16 +25,29 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame() {
 		super();
+		dao = DaoFactory.getInstance().getUserDao();
 		initialize();
 	}
+	
+	public Dao getDao() {
+        return dao;
+    }
 
 	private void initialize() {
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		this.setTitle("User Manager");
-		this.setContentPane(getContentPanel());
-	}
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        this.setTitle(Messages.getString("MainFrame.user_management")); //$NON-NLS-1$
+        this.setContentPane(getContentPanel());
+    }
 	
+	/**
+     * @param args
+     */
+    public static void main(String[] args) {
+        MainFrame frame = new MainFrame();
+        frame.setVisible(true);
+
+    }
 	
 	public void showAddPanel() {
 		showPanel(getAddPanel());
@@ -50,26 +63,59 @@ public class MainFrame extends JFrame {
 
 	private AddPanel getAddPanel() {
 		if(addPanel == null) {
-			addPanel = new AddPanel();
+			addPanel = new AddPanel(this);//Implement Later
 		}
 		return addPanel;
 	}
+	
+	public void showBrowsePanel() {
+        showPanel(getBrowsePanel());
+        
+    }
+
+
+    public void showEditPanel(User user) {
+
+        getEditPanel().setUser(user);//Impl Later
+        showPanel(getEditPanel());
+    }
+
+
+    private EditPanel getEditPanel() {
+        if (editPanel == null) {
+            editPanel = new EditPanel(this);//Impl Later
+        }
+        return editPanel;
+    }
+
+    public void showDetailsPanel(User user) {
+        getDetailsPanel().setUser(user);//Impl Later
+        showPanel(getDetailsPanel());
+    }
+
+    private DetailsPanel getDetailsPanel() {
+        if (detailsPanel == null) {
+            detailsPanel = new DetailsPanel(this);//Impl Later
+        }
+        return detailsPanel;
+    }
 
 	private JPanel getContentPanel() {
-		if(contentPanel == null) {
-			contentPanel = new JPanel();
-			contentPanel.setLayout(new BorderLayout());
-			contentPanel.add(getBrowsePanel());
-		}
-		return contentPanel;
-	}
+        if (contentPanel == null) {
+            contentPanel = new JPanel();
+            contentPanel.setLayout(new BorderLayout());
+            contentPanel.add(getBrowsePanel(), BorderLayout.CENTER);
+        }
+        return contentPanel;
+    }
 	
 
-	private BrowsePanel getBrowsePanel() {
-		if(browsePanel == null) {
-			browsePanel = new BrowsePanel(this);
-		}
-		return browsePanel;
-	}
+	private JPanel getBrowsePanel() {
+        if (browsePanel == null) {
+            browsePanel = new BrowsePanel(this);
+        }
+        ((BrowsePanel) browsePanel).initTable();
+        return browsePanel;
+    }
 
 }
