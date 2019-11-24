@@ -2,20 +2,33 @@ package ua.nure.cs.hura.usermanagement.gui;
 
 import java.awt.Component;
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import com.mockobjects.dynamic.Mock;
+
 import javax.swing.Box.Filler;
 
 import junit.extensions.jfcunit.JFCTestCase;
 import junit.extensions.jfcunit.JFCTestHelper;
 import junit.extensions.jfcunit.TestHelper;
+import junit.extensions.jfcunit.eventdata.JTableMouseEventData;
 import junit.extensions.jfcunit.eventdata.MouseEventData;
 import junit.extensions.jfcunit.eventdata.StringEventData;
+import junit.extensions.jfcunit.finder.DialogFinder;
 import junit.extensions.jfcunit.finder.NamedComponentFinder;
+
+import ua.nure.cs.hura.usermanagement.domain.User;
+import ua.nure.cs.hura.usermanagement.db.DaoFactory;
+import ua.nure.cs.hura.usermanagement.db.MockDaoFactory;
 
 public class MainFrameTest extends JFCTestCase {
 	private static final String DATE_OF_BIRTH_FIELD_COMPONENT_NAME = "dateOfBirthField";
@@ -32,25 +45,47 @@ public class MainFrameTest extends JFCTestCase {
 	private static final String EDIT_BUTTON_COMPONENT_NAME = "editButton";
 	private static final String ADD_BUTTON_COMPONENT_NAME = "addButton";
 	private static final int NUMBER_OF_COLUMNS_IN_USER_TABLE = 3;
+	
 	private MainFrame mainFrame;
+
+	private Mock mockUserDao;
+
+    private ArrayList<User> users;
+
+	private final Date DATE = new Date();
 
 	@Override
 	protected void setUp() throws Exception {
-		// TODO Auto-generated method stub
-		super.setUp();
-		setHelper(new JFCTestHelper());
-		mainFrame = new MainFrame();
-		mainFrame.setVisible(true);
-	}
+        try {
+            super.setUp();
+            Properties properties = new Properties();
+            properties.setProperty("dao.factory", MockDaoFactory.class.getName());
+            DaoFactory.init(properties );
+            mockUserDao = ((MockDaoFactory) DaoFactory.getInstance()).getMockUserDao();
+            User expectedUser = new User(new Long(1001L), "George", "Bush", DATE);
+            users = new ArrayList<User>();
+            users.add(expectedUser);
+            mockUserDao.expectAndReturn("findAll",users);
+            setHelper(new JFCTestHelper());
+            mainFrame = new MainFrame();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mainFrame.setVisible(true);
+    }
 
 	@Override
 	protected void tearDown() throws Exception {
-		mainFrame.setVisible(false);
-		getHelper();
-		TestHelper.cleanUp(this);
-		super.tearDown();
-		
-	}
+        try {
+            super.tearDown();
+            mockUserDao.verify();
+            mainFrame.setVisible(false);
+            getHelper();
+			TestHelper.cleanUp(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	
 	private Component find(Class<?> componentClass, String name) {
 		NamedComponentFinder finder;
