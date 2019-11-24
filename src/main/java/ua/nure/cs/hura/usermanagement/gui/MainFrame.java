@@ -7,13 +7,21 @@ import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import ua.nure.cs.hura.usermanagement.domain.User;
+import ua.nure.cs.hura.usermanagement.db.DaoFactory;
+import ua.nure.cs.hura.usermanagement.db.Dao;
+import ua.nure.cs.hura.usermanagement.util.Messages;
+
 public class MainFrame extends JFrame {
 	
 	private static final int FRAME_HEIGHT = 600;
 	private static final int FRAME_WIDTH = 800;
+	private Dao dao;
 	private JPanel contentPanel;
 	private BrowsePanel browsePanel;
 	private AddPanel addPanel;
+	private DetailsPanel detailsPanel;
+    private EditPanel editPanel;
 	
 	public MainFrame() {
 		super();
