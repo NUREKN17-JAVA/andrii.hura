@@ -17,7 +17,8 @@ public abstract class DaoFactory {
 	static {
 		properties = new Properties();
 		try {
-			properties.load(DaoFactory.class.getClassLoader().getResourceAsStream("settings.properties"));
+			properties.load(DaoFactory.class.getClassLoader()
+					.getResourceAsStream("settings.properties"));
 		} catch (IOException e) {
 			throw new RuntimeException("incorrect or missing settings");
 		}
@@ -41,8 +42,8 @@ public abstract class DaoFactory {
 		return instance;
 	}
 	
-	public void init (Properties properties) {
-		this.properties =  properties;
+	public static void init (Properties p) {
+		properties =  p;
 		instance = null;
 	}
 	

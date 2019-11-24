@@ -2,6 +2,8 @@ package ua.nure.cs.hura.usermanagement.db;
 
 import com.mockobjects.dynamic.Mock;
 
+import ua.nure.cs.hura.usermanagement.domain.User;
+
 public class MockDaoFactory extends DaoFactory {
 
 	private Mock mockUserDao;
@@ -14,8 +16,8 @@ public class MockDaoFactory extends DaoFactory {
 	       return mockUserDao;
 	}
 	    
-	public Dao getUserDao() {
-	       return (Dao) mockUserDao.proxy();
+	public Dao<User> getUserDao() {
+	       return (Dao<User>) mockUserDao.proxy();
 	}
 
 }

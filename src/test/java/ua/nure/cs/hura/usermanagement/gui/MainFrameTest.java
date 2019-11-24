@@ -59,13 +59,13 @@ public class MainFrameTest extends JFCTestCase {
 
 	@Override
 	protected void setUp() throws Exception {
+		super.setUp();
         try {
-            super.setUp();
             Properties properties = new Properties();
-            properties.setProperty("dao.factory", MockDaoFactory.class.getName());
-            //DaoFactory.init(properties);
+            properties.setProperty("dao.Factory", MockDaoFactory.class.getName());
+            DaoFactory.init(properties);
             mockUserDao = ((MockDaoFactory) DaoFactory.getInstance()).getMockUserDao();
-            User expectedUser = new User(new Long(1001L), "George", "Bush", DATE);
+            User expectedUser = new User(new Long(1001L), FIRST_NAME, LAST_NAME, DATE);
             users = new ArrayList<User>();
             users.add(expectedUser);
             mockUserDao.expectAndReturn("findAll",users);
@@ -102,10 +102,6 @@ public class MainFrameTest extends JFCTestCase {
 	public void testBrowsePanel() {
 		find(JPanel.class, BROWSE_PANEL_COMPONENT_NAME);
 		JTable table = (JTable) find(JTable.class, "userTable");
-		//assertEquals(NUMBER_OF_COLUMNS_IN_USER_TABLE, table.getColumnCount());
-		//assertEquals("ID", table.getColumnName(0));
-		//assertEquals("First Name", table.getColumnName(1));
-		//assertEquals("Last Name", table.getColumnName(2));
 		find(JButton.class, ADD_BUTTON_COMPONENT_NAME);
 		find(JButton.class, EDIT_BUTTON_COMPONENT_NAME);
 		find(JButton.class, DETAILS_BUTTON_COMPONENT_NAME);
@@ -115,12 +111,12 @@ public class MainFrameTest extends JFCTestCase {
 	
 	public void testAddUser() {
         try {
-            String firstName = "George";
-            String lastName = "Bush";
+            String firstName = FIRST_NAME;
+            String lastName = LAST_NAME;
 
-            User user = new User("George", "Bush", DATE);
+            User user = new User(FIRST_NAME, LAST_NAME, DATE);
 
-            User expectedUser = new User(new Long(1), "George", "Bush", DATE);
+            User expectedUser = new User(new Long(1), FIRST_NAME, LAST_NAME, DATE);
             mockUserDao.expectAndReturn("create", user, expectedUser);
             System.out.println("1a" + expectedUser + user);
 

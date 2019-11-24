@@ -17,4 +17,5 @@ public interface Dao<T>{
 
 	public void setConnectionFactory(ConnectionFactory connectionFactory);
 	
+	
 }

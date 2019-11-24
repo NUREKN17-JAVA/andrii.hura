@@ -44,7 +44,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	}
 
 	private void initialize() {
-		this.setName("browsePanel");// non-localized(No need to do localization)
+		this.setName("browsePanel");//$NON-NLS-1$
 		this.setLayout(new BorderLayout());
 		this.add(getTablePanel(), BorderLayout.CENTER);
 		this.add(getButtonsPanel(), BorderLayout.SOUTH);
@@ -65,9 +65,9 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	private JButton getAddButton() {
         if (addButton == null) {
             addButton = new JButton();
-            addButton.setText(Messages.getString("BrowsePanel.add")); //non localized
-            addButton.setName(ADD_BUTTON_COMPONENT_NAME); //non localized
-            addButton.setActionCommand(ADD_COMMAND); //non localized
+            addButton.setText(Messages.getString("BrowsePanel.add")); //$NON-NLS-1$
+            addButton.setName(ADD_BUTTON_COMPONENT_NAME); //$NON-NLS-1$
+            addButton.setActionCommand(ADD_COMMAND); //$NON-NLS-1$
             addButton.addActionListener(this);
         }
         return addButton;
@@ -77,9 +77,9 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	private JButton getEditButton() {
         if (editButton == null) {
             editButton = new JButton();
-            editButton.setText(Messages.getString("BrowsePanel.edit")); //non localized
-            editButton.setName(EDIT_BUTTON_COMPONENT_NAME); //non localized
-            editButton.setActionCommand(EDIT_COMMAND); //non localized
+            editButton.setText(Messages.getString("BrowsePanel.edit")); //$NON-NLS-1$
+            editButton.setName(EDIT_BUTTON_COMPONENT_NAME); //$NON-NLS-1$
+            editButton.setActionCommand(EDIT_COMMAND); //$NON-NLS-1$
             editButton.addActionListener(this);
         }
         return editButton;
@@ -90,10 +90,9 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	private JButton getDeleteButton() {
         if (deleteButton == null) {
             deleteButton = new JButton();
-            deleteButton.setText(Messages.getString("BrowsePanel.delete")); //non localized
-            deleteButton.setName(DELETE_BUTTON_COMPONENT_NAME); //non localized
-            deleteButton.setActionCommand(DELETE_COMMAND); //non localized
-            deleteButton.addActionListener(this);
+            deleteButton.setText(Messages.getString("BrowsePanel.delete")); //$NON-NLS-1$
+            deleteButton.setName(DELETE_BUTTON_COMPONENT_NAME); //$NON-NLS-1$
+            deleteButton.setActionCommand(DELETE_COMMAND); //$NON-NLS-1$
         }
         return deleteButton;
     }
@@ -102,9 +101,9 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	private JButton getDetailsButton() {
         if (detailsButton == null) {
             detailsButton = new JButton();
-            detailsButton.setText(Messages.getString("BrowsePanel.details")); //non localized
-            detailsButton.setName(DETAILS_BUTTON_COMPONENT_NAME); //non localized
-            detailsButton.setActionCommand(DETAILS_COMMAND); //non localized
+            detailsButton.setText(Messages.getString("BrowsePanel.details")); //$NON-NLS-1$
+            detailsButton.setName(DETAILS_BUTTON_COMPONENT_NAME); //$NON-NLS-1$
+            detailsButton.setActionCommand(DETAILS_COMMAND); //$NON-NLS-1$
             detailsButton.addActionListener(this);
         }
         return detailsButton;
@@ -115,7 +114,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	private JScrollPane getTablePanel() {
 		if(tablePanel == null) {
 			tablePanel = new JScrollPane(getUserTable());
-			//tablePanel.setName("userTable"); //non-localize
+			//tablePanel.setName("userTable"); //$NON-NLS-1$
 		}
 		return tablePanel;
 	}
@@ -123,7 +122,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	private JTable getUserTable() {
 		if(userTable == null) {
 			userTable = new JTable();
-			userTable.setName("userTable"); //non-localize
+			userTable.setName("userTable"); //$NON-NLS-1$
 		}
 		return userTable;
 	}
@@ -149,7 +148,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 			parent.showAddPanel();
 		} ///else if(EDIT_COMMANd)...
 		
-		else if (EDIT_COMMAND.equalsIgnoreCase(acctionCommand)) { //non localized
+		else if (EDIT_COMMAND.equalsIgnoreCase(acctionCommand)) { //$NON-NLS-1$
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
                 JOptionPane.showMessageDialog(this, "Select a user, please",
@@ -162,7 +161,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
             parent.showEditPanel(user);//Add to MainFrame
         }
 		
-		else if (DELETE_COMMAND.equalsIgnoreCase(acctionCommand)) { //non localized
+		else if (DELETE_COMMAND.equalsIgnoreCase(acctionCommand)) { //$NON-NLS-1$
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
                 JOptionPane.showMessageDialog(this, "Select a user, please",

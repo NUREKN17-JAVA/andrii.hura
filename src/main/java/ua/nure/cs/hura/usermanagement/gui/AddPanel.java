@@ -22,6 +22,14 @@ import ua.nure.cs.hura.usermanagement.util.Messages;
 public class AddPanel extends JPanel implements ActionListener {
     
     
+	private static final String OK_BUTTON_COMPONENT_NAME = "okButton";
+
+	private static final String OK_COMMAND = "ok";
+
+	private static final String CANCEL_BUTTON_COMPONENT_NAME = "cancelButton";
+
+	private static final String CANCEL_COMMAND = "cancel";
+
 	private static final long serialVersionUID = 1L;
 	
 	protected MainFrame parent;
@@ -60,8 +68,8 @@ public class AddPanel extends JPanel implements ActionListener {
         if (cancelButton == null) {
             cancelButton = new JButton();
             cancelButton.setText(Messages.getString("AddPanel.cancel")); //$NON-NLS-1$
-            cancelButton.setName("cancelButton"); //$NON-NLS-1$
-            cancelButton.setActionCommand("cancel"); //$NON-NLS-1$
+            cancelButton.setName(CANCEL_BUTTON_COMPONENT_NAME); //$NON-NLS-1$
+            cancelButton.setActionCommand(CANCEL_COMMAND); //$NON-NLS-1$
             cancelButton.addActionListener(this);
         }
         return cancelButton;
@@ -71,8 +79,8 @@ public class AddPanel extends JPanel implements ActionListener {
         if (okButton == null) {
             okButton = new JButton();
             okButton.setText(Messages.getString("AddPanel.ok")); //$NON-NLS-1$
-            okButton.setName("okButton"); //$NON-NLS-1$
-            okButton.setActionCommand("ok"); //$NON-NLS-1$
+            okButton.setName(OK_BUTTON_COMPONENT_NAME); //$NON-NLS-1$
+            okButton.setActionCommand(OK_COMMAND); //$NON-NLS-1$
             okButton.addActionListener(this);
         }
         return okButton;
@@ -121,7 +129,7 @@ public class AddPanel extends JPanel implements ActionListener {
     }
 
     protected void doAction(ActionEvent e) throws ParseException {
-        if ("ok".equalsIgnoreCase(e.getActionCommand())) {
+        if (OK_COMMAND.equalsIgnoreCase(e.getActionCommand())) {
             User user = new User();
             user.setFirstName(getFirstNameField().getText());
             user.setLastName(getLastNameField().getText());

@@ -13,6 +13,8 @@ import ua.nure.cs.hura.usermanagement.util.Messages;
 
 public class DetailsPanel extends JPanel implements ActionListener {
 
+	private static final String CANCEL_BUTTON_COMPONENT_NAME = "cancelButton";
+	private static final String CANCEL_COMMAND = "cancel";
 	private static final long serialVersionUID = 5955495123527812587L;
 	private MainFrame parent;
     private JPanel buttonPanel;
@@ -66,8 +68,8 @@ public class DetailsPanel extends JPanel implements ActionListener {
         if (cancelButton == null) {
             cancelButton = new JButton();
             cancelButton.setText(Messages.getString("DetailsPanel.cancel")); //$NON-NLS-1$
-            cancelButton.setName("cancelButton"); //$NON-NLS-1$
-            cancelButton.setActionCommand("cancel"); //$NON-NLS-1$
+            cancelButton.setName(CANCEL_BUTTON_COMPONENT_NAME); //$NON-NLS-1$
+            cancelButton.setActionCommand(CANCEL_COMMAND); //$NON-NLS-1$
             cancelButton.addActionListener(this);
         }
         return cancelButton;

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import ua.nure.cs.hura.usermanagement.domain.User;
 
-public class MockUserDao implements Dao {
+public class MockUserDao implements Dao<User> {
 	private long id = 0;
 	private Map<Long, User> users = new HashMap<> ();
 	
@@ -36,26 +36,5 @@ public class MockUserDao implements Dao {
 
     public void setConnectionFactory(ConnectionFactory connectionFactory) {
     }
-
-	@Override
-	public Object create(Object entity) throws DatabaseException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(Object entity) throws DatabaseException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Object entity) throws DatabaseException {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
 
 }
