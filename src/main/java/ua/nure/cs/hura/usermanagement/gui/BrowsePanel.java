@@ -66,8 +66,8 @@ public class BrowsePanel extends JPanel implements ActionListener {
         if (addButton == null) {
             addButton = new JButton();
             addButton.setText(Messages.getString("BrowsePanel.add")); //non localized
-            addButton.setName("addButton"); //non localized
-            addButton.setActionCommand("add"); //non localized
+            addButton.setName(ADD_BUTTON_COMPONENT_NAME); //non localized
+            addButton.setActionCommand(ADD_COMMAND); //non localized
             addButton.addActionListener(this);
         }
         return addButton;
@@ -78,7 +78,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
         if (editButton == null) {
             editButton = new JButton();
             editButton.setText(Messages.getString("BrowsePanel.edit")); //non localized
-            editButton.setName("editButton"); //non localized
+            editButton.setName(EDIT_BUTTON_COMPONENT_NAME); //non localized
             editButton.setActionCommand(EDIT_COMMAND); //non localized
             editButton.addActionListener(this);
         }
@@ -91,7 +91,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
         if (deleteButton == null) {
             deleteButton = new JButton();
             deleteButton.setText(Messages.getString("BrowsePanel.delete")); //non localized
-            deleteButton.setName("deleteButton"); //non localized
+            deleteButton.setName(DELETE_BUTTON_COMPONENT_NAME); //non localized
             deleteButton.setActionCommand(DELETE_COMMAND); //non localized
             deleteButton.addActionListener(this);
         }
@@ -103,7 +103,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
         if (detailsButton == null) {
             detailsButton = new JButton();
             detailsButton.setText(Messages.getString("BrowsePanel.details")); //non localized
-            detailsButton.setName("detailsButton"); //non localized
+            detailsButton.setName(DETAILS_BUTTON_COMPONENT_NAME); //non localized
             detailsButton.setActionCommand(DETAILS_COMMAND); //non localized
             detailsButton.addActionListener(this);
         }
