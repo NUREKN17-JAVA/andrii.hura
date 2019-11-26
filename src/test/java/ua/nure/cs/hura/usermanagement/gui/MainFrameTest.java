@@ -145,7 +145,7 @@ public class MainFrameTest extends JFCTestCase {
             fail(e.toString());
         }
     }
-	
+	//
 	public void testCancelAddUser() {
         try {
             String firstName = "John";
