@@ -28,5 +28,7 @@
 	<classpathentry kind="lib" path="lib/nekohtml.jar"/>
 	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/jstl-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/standard-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
