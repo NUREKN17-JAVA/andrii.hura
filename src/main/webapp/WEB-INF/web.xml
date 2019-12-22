@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4">
+	<servlet>
+		<servlet-name>Browse Servlet</servlet-name>
+		<servlet-class>usermanagement.web.BrowseServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<serviet-name>Browse Servlet</serviet-name>
+		<url-pattern>browse</url-pattern>
+	</servlet-mapping>
+</web-app> 
