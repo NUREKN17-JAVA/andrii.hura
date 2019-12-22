@@ -2,6 +2,7 @@ package ua.nure.cs.hura.usermanagement.web;
 
 import ua.nure.cs.hura.usermanagement.db.DaoFactory;
 import ua.nure.cs.hura.usermanagement.db.DatabaseException;
+import ua.nure.cs.hura.usermanagement.domain.User;
 
 
 import java.io.IOException;
@@ -14,12 +15,60 @@ import javax.servlet.http.HttpServletResponse;
 
 public class BrowseServlet extends HttpServlet {
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void service(HttpServletRequest req, 
+			HttpServletResponse resp) throws ServletException,
+	IOException {
+		if (req.getParameter("addButton")!=null) {
+			add(req,resp);
+		} else if (req.getParameter("editButton") != null) {
+			edit(req,resp);
+		} else if(req.getParameter("deleteButton") != null) {
+			delete(req,resp);
+		} else if(req.getParameter("detailsButton") != null) {
+			details(req,resp);
+		} else {
 		browse(req, resp);
+		}
 	}
 
-	private void browse(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException  {
+	
+	private void details(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+	}
+	private void delete(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		
+	}
+	
+	private void edit(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		String idStr = req.getParameter("id");
+
+		if(idStr==null||idStr.trim().length()==0) {
+			req.setAttribute("error", "You must select a user");
+			req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+			return;
+		}
+		try {
+			User user = DaoFactory.getInstance().getUserDao().find(new Long(idStr));
+			req.getSession().setAttribute("user", user);
+		} catch (Exception e) {
+			req.setAttribute("error", "ERROR:"+e.toString());
+			req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+			return;
+		}
+		req.getRequestDispatcher("/edit").forward(req, resp);
+	}
+	
+	private void add(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	
+
+	private void browse(HttpServletRequest req, HttpServletResponse resp)throws 
+	ServletException, IOException  {
 		// TODO Auto-generated method stub
 		Collection users;
 		try {
@@ -31,6 +80,5 @@ public class BrowseServlet extends HttpServlet {
 			throw new ServletException(e);
 		}
 	}
-
 
 }
