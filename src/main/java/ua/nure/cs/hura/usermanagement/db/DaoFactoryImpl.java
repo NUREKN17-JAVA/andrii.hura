@@ -3,10 +3,10 @@ package ua.nure.cs.hura.usermanagement.db;
 import ua.nure.cs.hura.usermanagement.domain.User;
 
 public class DaoFactoryImpl extends DaoFactory {
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public Dao<User> getUserDao() {
-		Dao<User> result;
+		Dao<User> result = null;
 		try {
 			Class<?> clazz = Class.forName(properties.getProperty(USER_DAO));
 			result = (Dao<User>) clazz.newInstance();

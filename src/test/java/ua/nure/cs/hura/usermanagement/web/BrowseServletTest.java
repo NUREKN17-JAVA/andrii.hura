@@ -1,6 +1,6 @@
 package ua.nure.cs.hura.usermanagement.web;
 
-import ua.nure.cs.hura.usermanagement.domain.*;
+import ua.nure.cs.hura.usermanagement.domain.User;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,10 +17,11 @@ public class BrowseServletTest extends MockServletTestCase {
 	}
 	public void testBrowse() {
 		User user = new User(new Long(1000), "John","Doe",new Date());
-		List list = Collections.singletonList(user);
+		List<User> list = Collections.singletonList(user);
 		getMockUserDao().expectAndReturn("findAll", list);
 		doGet();
-		Collection collection = (Collection) getWebMockObjectFactory().getMockSession().getAttribute("users");
+		@SuppressWarnings("unchecked")
+		Collection<User> collection = (Collection<User>) getWebMockObjectFactory().getMockSession().getAttribute("users");
 		assertNotNull("Could not find list of users in session",collection);
 		assertSame(list,collection);
 

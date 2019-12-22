@@ -1,9 +1,9 @@
 <dataset> 
 	<table name="users"> 
 		<column>id</column> 
-		<column>firstname</column> 
-		<column>lastname</column> 
-		<column>dateofbirth</column>
+		<column>firstName</column> 
+		<column>lastName</column> 
+		<column>dateOfBirth</column>
 		 <row> 
 			<value>3</value> 
 			<value>TestFind</value> 
