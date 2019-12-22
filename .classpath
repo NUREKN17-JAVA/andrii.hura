@@ -11,5 +11,22 @@
 	<classpathentry kind="lib" path="lib/jfcunit-2.08.jar"/>
 	<classpathentry kind="lib" path="lib/mockobjects-core-0.09.jar"/>
 	<classpathentry kind="lib" path="lib/regexp-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/commons-logging.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/jakarta-oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/jdom.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/jsp-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/junit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/lib/mockrunner-servlet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/nekohtml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/AndriiHura/Desktop/mockrunner-0.3.6/jar/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="lib/jakarta-oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="lib/mockrunner-servlet.jar"/>
+	<classpathentry kind="lib" path="lib/nekohtml.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
