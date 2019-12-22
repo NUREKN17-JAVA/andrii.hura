@@ -23,5 +23,10 @@
     <input type="submit" name="editButton" value="Edit">
     <input type="submit" name="deleteButton" value="Delete">
     <input type="submit" name="detailsButton" value="Details">
+    <c:if test ="${requetScope.error !=null}">
+	<script>
+		alert('${reqquestScope.error}');
+	</script>
+</c:if>
 </body>
 </html>
