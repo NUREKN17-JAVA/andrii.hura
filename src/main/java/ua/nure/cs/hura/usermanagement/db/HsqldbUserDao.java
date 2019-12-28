@@ -20,6 +20,7 @@ public class HsqldbUserDao implements Dao<User> {
 	private static final String SELECT_QUERY = "SELECT * FROM users";
 	private static final String CALL_IDENTITY = "call IDENTITY()";
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES(?, ? ,?);";
+	private static final String SELECT_BY_NAME = "SELECT * FROM users WHERE firstname=? AND lastname=?";
 	ConnectionFactory connectionFactory;
 	
 	public ConnectionFactory getConnectionFactory() {
@@ -160,5 +161,28 @@ public class HsqldbUserDao implements Dao<User> {
 		
 		return result;
 	}
+	@Override
+	public Collection<User> find(String firstName, String lastName) throws DatabaseException {
+		Collection result = new LinkedList();
+
+	    try {
+	      Connection connection = connectionFactory.createConnection();
+	      PreparedStatement statement = connection.prepareStatement(SELECT_BY_NAME);
+	      statement.setString(1, firstName);
+	      statement.setString(2, lastName);
+	      ResultSet resultSet = statement.executeQuery();
+	      while(resultSet.next()){
+	        User user = new User();
+	        user.setId(new Long(resultSet.getLong(1)));
+	        user.setFirstName(resultSet.getString(2));
+	        user.setLastName(resultSet.getString(3));
+	        user.setDateOfBirth(resultSet.getDate(4));
+	        result.add(user);
+	      }
+	    } catch (SQLException e) {
+	      throw new DatabaseException(e);
+	    }
+	    return result;
+	  }
 
 }
