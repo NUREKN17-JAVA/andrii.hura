@@ -4,8 +4,12 @@ import ua.nure.cs.hura.usermanagement.db.DaoFactory;
 import ua.nure.cs.hura.usermanagement.db.DatabaseException;
 import jade.core.AID;
 import jade.core.Agent;
+import ua.nure.cs.hura.usermanagement.domain.User;
+
 
 public class SearchAgent extends Agent {
+	
+	private static final long serialVersionUID = 1193396105443361352L;
 
 	@Override
 	protected void setup() {
@@ -21,7 +25,7 @@ public class SearchAgent extends Agent {
 	
 	public void search(String firstName, String lastName) throws SearchException{
 		try {
-			Collection users = DaoFactory.getInstance().getUserDao().find(firstName,lastName);
+			Collection <User>users = DaoFactory.getInstance().getUserDao().find(firstName,lastName);
 			if(users.size()>0) {
 				showUsers(users);
 			}else {
@@ -31,7 +35,7 @@ public class SearchAgent extends Agent {
 			throw new SearchException(e);
 		}
 	}
-	public void showUsers(Collection user) {
+	public void showUsers(Collection <User>user) {
 
 	}
 

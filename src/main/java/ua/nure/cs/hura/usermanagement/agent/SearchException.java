@@ -1,6 +1,10 @@
 package ua.nure.cs.hura.usermanagement.agent;
 
 public class SearchException extends Exception {
+	
+	private static final long serialVersionUID = -3957538033210631517L;
+	
+	
 	public SearchException() {
 
 	}
