@@ -2,7 +2,7 @@ package ua.nure.cs.hura.usermanagement.agent;
 import java.util.Collection;
 import ua.nure.cs.hura.usermanagement.db.DaoFactory;
 import ua.nure.cs.hura.usermanagement.db.DatabaseException;
-
+import jade.core.AID;
 import jade.core.Agent;
 
 public class SearchAgent extends Agent {
@@ -25,13 +25,13 @@ public class SearchAgent extends Agent {
 			if(users.size()>0) {
 				showUsers(users);
 			}else {
-
+				addBehaviour(new SearchRequestBehaviour(new AID[] {}, firstName,lastName));
 			}
 		} catch(DatabaseException e) {
 			throw new SearchException(e);
 		}
 	}
-	private void showUsers(Collection user) {
+	public void showUsers(Collection user) {
 
 	}
 
